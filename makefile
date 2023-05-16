@@ -18,3 +18,6 @@ update_asm: HELLO.BIN TESTASM.DSK
 
 dir: TESTASM.DSK
 	decb dir TESTASM.DSK
+
+run_bin_in_xroar: HELLO.BIN
+	xroar $<
