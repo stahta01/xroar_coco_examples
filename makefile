@@ -1,23 +1,30 @@
 #
 
 ASBIN=lwasm --6809 --format=decb
+DECB=decb
+XROAR=xroar
 
-all: HELLO.BIN TESTASM.DSK update_asm dir
+TARGETASM=helloworld.asm
+TARGETBIN=HELLO.BIN
+TARGETDISK=TESTASM.DSK
+
+
+all: $(TARGETBIN) run_bin_in_xroar
 
 clean:
-	rm -f HELLO.BIN
+	rm -f $(TARGETBIN)
 
-HELLO.BIN: helloworld.asm
+$(TARGETBIN): $(TARGETASM)
 	$(ASBIN) -o $@ $<
 
-TESTASM.DSK:
-	decb dskini $@
+$(TARGETDISK):
+	$(DECB) dskini $@
 
-update_asm: HELLO.BIN TESTASM.DSK
-	decb copy -r -2 HELLO.BIN TESTASM.DSK,$<
+update_asm_on_disk: $(TARGETBIN) $(TARGETDISK)
+	$(DECB) copy -r -2 $< $(TARGETDISK),$<
 
-dir: TESTASM.DSK
-	decb dir TESTASM.DSK
+dir: $(TARGETDISK)
+	$(DECB) dir $<
 
-run_bin_in_xroar: HELLO.BIN
-	xroar $<
+run_bin_in_xroar: $(TARGETBIN)
+	$(XROAR) $<
