@@ -2,7 +2,7 @@
 
 ASBIN=lwasm --6809 --format=decb
 DECB=decb
-XROAR=xroar
+XROAR=/mingw32/bin/xroar
 
 TARGETASM=helloworld.asm
 TARGETBIN=HELLO.BIN
