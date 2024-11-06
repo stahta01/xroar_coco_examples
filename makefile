@@ -9,7 +9,7 @@ TARGETBIN=HELLO.BIN
 TARGETDISK=TESTASM.DSK
 TARGET_C_FILE=hello.c
 TARGET_OBJ_FILE=a.out
-CMOC=cmoc --verbose
+CC6809=cmoc --verbose
 
 all: $(TARGETBIN) run_bin_in_xroar
 
@@ -20,7 +20,7 @@ clean:
 #	$(ASBIN) -o $@ $<
 
 $(TARGETBIN): $(TARGET_C_FILE)
-	$(CMOC) -o $@ $< 
+	$(CC6809) -o $@ $< 
 
 $(TARGETDISK):
 	$(DECB) dskini $@
