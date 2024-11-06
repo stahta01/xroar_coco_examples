@@ -16,6 +16,7 @@ all: $(TARGETCBIN) run_bin_in_xroar
 clean:
 	rm -f $(TARGETCBIN)
 	rm -f $(TARGETCDISK)
+	rm -f *.bin
 
 #$(TARGETBIN): $(TARGETASM)
 #	$(ASBIN) -o $@ $<
