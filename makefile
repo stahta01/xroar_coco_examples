@@ -5,31 +5,32 @@ DECB=decb
 XROAR=xroar
 
 TARGETASM=helloworld.asm
-TARGETBIN=HELLO.BIN
-TARGETDISK=TESTASM.DSK
+TARGETCBIN=HELLO.BIN
+TARGETCDISK=TESTC.DSK
 TARGET_C_FILE=hello.c
 TARGET_OBJ_FILE=a.out
 CC6809=cmoc --verbose
 
-all: $(TARGETBIN) run_bin_in_xroar
+all: $(TARGETCBIN) run_bin_in_xroar
 
 clean:
-	rm -f $(TARGETBIN)
+	rm -f $(TARGETCBIN)
+	rm -f $(TARGETCDISK)
 
 #$(TARGETBIN): $(TARGETASM)
 #	$(ASBIN) -o $@ $<
 
-$(TARGETBIN): $(TARGET_C_FILE)
+$(TARGETCBIN): $(TARGET_C_FILE)
 	$(CC6809) -o $@ $< 
 
-$(TARGETDISK):
+$(TARGETCDISK):
 	$(DECB) dskini $@
 
-update_bin_on_disk: $(TARGETBIN) $(TARGETDISK)
-	$(DECB) copy -r -2 $< $(TARGETDISK),$<
+update_bin_on_disk: $(TARGETCBIN) $(TARGETCDISK)
+	$(DECB) copy -r -2 $< $(TARGETCDISK),$<
 
 dir: $(TARGETDISK)
 	$(DECB) dir $<
 
-run_bin_in_xroar: $(TARGETBIN)
+run_bin_in_xroar: $(TARGETCBIN)
 	$(XROAR) $<
