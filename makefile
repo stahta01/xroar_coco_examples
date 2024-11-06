@@ -9,7 +9,7 @@ TARGETBIN=HELLO.BIN
 TARGETDISK=TESTASM.DSK
 TARGET_C_FILE=hello.c
 TARGET_OBJ_FILE=a.out
-CMOC=PATH=/usr/bin:$PATH cmoc --verbose
+CMOC=cmoc --verbose
 
 all: $(TARGETBIN) run_bin_in_xroar
 
