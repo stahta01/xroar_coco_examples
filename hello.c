@@ -3,7 +3,7 @@
 
 int main()
 {
- printf("Hello World");
+ printf("%s", "Hello World");
  waitkey(1);
  return 0;
 }
